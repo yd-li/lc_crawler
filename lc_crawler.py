@@ -33,3 +33,4 @@ get_problems(html)
 text_file = open("Output.txt", "w")
 text_file.write(html)
 text_file.close()
+print "123"
