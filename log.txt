@@ -1,0 +1,82 @@
+1:	Identical Binary Tree Failed.
+	URL: http://www.jiuzhang.com/solutions/identical-binary-tree
+2:	Cosine Similarity Failed.
+	URL: http://www.jiuzhang.com/solutions/cosine-similarity
+3:	Find the Missing Number Failed.
+	URL: http://www.jiuzhang.com/solutions/find-the-missing-number
+4:	Segment Tree Build II Failed.
+	URL: http://www.jiuzhang.com/solutions/segment-tree-build-ii
+5:	Longest Words Failed.
+	URL: http://www.jiuzhang.com/solutions/longest-words
+6:	Number of Islands Failed.
+	URL: http://www.jiuzhang.com/solutions/number-of-islands
+7:	Pow(x, n) Failed.
+	URL: http://www.jiuzhang.com/solutions/pow(x,-n)
+8:	Nuts & Bolts Problem Failed.
+	URL: http://www.jiuzhang.com/solutions/nuts-&-bolts-problem
+9:	Continuous Subarray Sum Failed.
+	URL: http://www.jiuzhang.com/solutions/continuous-subarray-sum
+10:	Partition Array by Odd and Even Failed.
+	URL: http://www.jiuzhang.com/solutions/partition-array-by-odd-and-even
+11:	Next Permutation II Failed.
+	URL: http://www.jiuzhang.com/solutions/next-permutation-ii
+12:	Count 1 in Binary Failed.
+	URL: http://www.jiuzhang.com/solutions/count-1-in-binary
+13:	Fibonacci Failed.
+	URL: http://www.jiuzhang.com/solutions/fibonacci
+14:	Delete Node in the Middle of Singly Linked List Failed.
+	URL: http://www.jiuzhang.com/solutions/delete-node-in-the-middle-of-singly-linked-list
+15:	Convert Sorted Array to Binary Search Tree With  Minimal Height Failed.
+	URL: http://www.jiuzhang.com/solutions/convert-sorted-array-to-binary-search-tree-with--minimal-height
+16:	Assignment Operator Overloading (C++ Only) Failed.
+	URL: http://www.jiuzhang.com/solutions/assignment-operator-overloading-(c++-only)
+17:	Print Numbers by Recursion Failed.
+	URL: http://www.jiuzhang.com/solutions/print-numbers-by-recursion
+18:	Singleton Failed.
+	URL: http://www.jiuzhang.com/solutions/singleton
+19:	Matrix Zigzag Traversal Failed.
+	URL: http://www.jiuzhang.com/solutions/matrix-zigzag-traversal
+20:	Flip Bits Failed.
+	URL: http://www.jiuzhang.com/solutions/flip-bits
+21:	Route Between Two Nodes in Graph Failed.
+	URL: http://www.jiuzhang.com/solutions/route-between-two-nodes-in-graph
+22:	Nth to Last Node in List Failed.
+	URL: http://www.jiuzhang.com/solutions/nth-to-last-node-in-list
+23:	Unique Characters Failed.
+	URL: http://www.jiuzhang.com/solutions/unique-characters
+24:	Interleaving Positive and Negative Numbers Failed.
+	URL: http://www.jiuzhang.com/solutions/interleaving-positive-and-negative-numbers
+25:	O(1) Check Power of 2 Failed.
+	URL: http://www.jiuzhang.com/solutions/o(1)-check-power-of-2
+26:	Sqrt(x) Failed.
+	URL: http://www.jiuzhang.com/solutions/sqrt(x)
+27:	Hash Function Failed.
+	URL: http://www.jiuzhang.com/solutions/hash-function
+28:	Backpack II Failed.
+	URL: http://www.jiuzhang.com/solutions/backpack-ii
+29:	Convert Sorted List to Balanced BST Failed.
+	URL: http://www.jiuzhang.com/solutions/convert-sorted-list-to-balanced-bst
+30:	Minimum Adjustment Cost Failed.
+	URL: http://www.jiuzhang.com/solutions/minimum-adjustment-cost
+31:	k Sum II Failed.
+	URL: http://www.jiuzhang.com/solutions/k-sum-ii
+32:	Data Stream Median Failed.
+	URL: http://www.jiuzhang.com/solutions/data-stream-median
+33:	Compare Strings Failed.
+	URL: http://www.jiuzhang.com/solutions/compare-strings
+34:	String to Integer II Failed.
+	URL: http://www.jiuzhang.com/solutions/string-to-integer-ii
+35:	Previous Permutation Failed.
+	URL: http://www.jiuzhang.com/solutions/previous-permutation
+36:	Product of Array Exclude Itself Failed.
+	URL: http://www.jiuzhang.com/solutions/product-of-array-exclude-itself
+37:	Maximum Subarray Difference Failed.
+	URL: http://www.jiuzhang.com/solutions/maximum-subarray-difference
+38:	strStr Failed.
+	URL: http://www.jiuzhang.com/solutions/strstr
+39:	Fizz Buzz Failed.
+	URL: http://www.jiuzhang.com/solutions/fizz-buzz
+40:	Digit Counts Failed.
+	URL: http://www.jiuzhang.com/solutions/digit-counts
+41:	A + B Problem Failed.
+	URL: http://www.jiuzhang.com/solutions/a-+-b-problem

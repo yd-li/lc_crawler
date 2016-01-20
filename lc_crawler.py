@@ -23,8 +23,10 @@ def save_array_txt(array, txt_name):
 
 def get_problems(problem_url):
 	# return all problems as a list
-	# TODO: let url fully load
-	html = get_html(problem_url)
+	# TODO: let url fully load --> failed!
+	# html = get_html(problem_url)
+	with open('html.txt', 'r') as myfile:
+	    html=myfile.read()
 	problems = re.findall('<span class="m-l-sm title">\n(.*?)\n</span>', html, re.S)
 	save_array_txt(problems, 'problems')
 	print 'ok...get_problems'
