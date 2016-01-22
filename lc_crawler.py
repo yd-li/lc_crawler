@@ -28,15 +28,14 @@ def save_array_txt(array, txt_name):
 def get_problems(problem_url):
 	# return all problems as a list
 	# TODO: let url fully load --> failed!
-<<<<<<< 82803590cecaeaf5315c77792a5fc7f7dec45e23
-	html = get_html(problem_url)
+
 	# with open('html.txt', 'r') as myfile:
 	#    html=myfile.read()
-=======
+
 	# html = get_html(problem_url)
 	txt_file = open('html.txt', 'r')
 	html = txt_file.read()
->>>>>>> add description
+	# add description
 	problems = re.findall('<span class="m-l-sm title">\n(.*?)\n</span>', html, re.S)
 	save_array_txt(problems, 'problems')
 	print 'ok...get_problems'
@@ -68,10 +67,6 @@ def get_answer(problems, ans_url_base, que_url_base):
 		que_url = (que_url_base + encoded_problem).lower()
 		# use HTTP request to get and save answer code
 		try:
-<<<<<<< 82803590cecaeaf5315c77792a5fc7f7dec45e23
-			html = get_html(ans_url)
-			item = re.findall('<pre class="prettyprint nicefont">(.*?)\n</pre>', html, re.S)
-=======
 			# question page ----------
 			que_html = get_html(que_url)
 			# question descripton
@@ -89,13 +84,13 @@ def get_answer(problems, ans_url_base, que_url_base):
 				example_soup = BeautifulSoup(example_raw[0], "lxml")
 				example = ''.join(example_soup.find_all(text=True))
 			# put them together
-			number_ques_example = 'start_problem' + '\n' + eachItem + '\n' + '\n' + ques + '\n' + '\n' + example + '\n' + '\n'
+			number_ques_example = 'problem_start' + '\n' + eachItem + '\n' + '\n' + ques + '\n' + '\n' + example + '\n' + '\n'
 			# answer page ----------
 			ans_html = get_html(ans_url)
-			item = re.findall('<pre class="prettyprint nicefont">(.*?)</pre>', ans_html, re.S)
->>>>>>> add description
-			code = unescape(item[0], {"&apos;": "'", "&quot;": '"'})	# replace the xml character reference
-			code = code + "\n" + "end_problem"
+			ans_raw = re.findall('<pre class="prettyprint nicefont">(.*?)</pre>', ans_html, re.S)
+			# add description
+			code = unescape(ans_raw[0], {"&apos;": "'", "&quot;": '"'})	# replace the xml character reference
+			code = code + '\n' + 'problem_end'
 			# Save code as file
 			save_answer_code(eachItem, number_ques_example + code[372:])
 			success_cnt = success_cnt + 1
