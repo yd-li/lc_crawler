@@ -50,6 +50,13 @@ def save_answer_code(file_name, code):
 	answer_file.write(code)
 	answer_file.close()
 
+def isEmpty_bf(raw):
+	if len(raw) == 0:
+		return ''
+	else:
+		raw_soup = BeautifulSoup(raw[0], "lxml")
+		return ''.join(raw_soup.find_all(text=True))
+
 def get_answer(problems, ans_url_base, que_url_base):
 	rep = re.compile(' ')
 	log_file = open('log.txt', 'w')
@@ -69,22 +76,18 @@ def get_answer(problems, ans_url_base, que_url_base):
 		try:
 			# question page ----------
 			que_html = get_html(que_url)
+			# difficulty descripton
+			diff_raw = re.findall('data-original-title=(.*?)style', que_html, re.S)
+			diff = isEmpty_bf(diff_raw)
 			# question descripton
 			ques_raw = re.findall('<div class="panel-body">.*?<p>(.*?)</p>', que_html, re.S)
-			if len(ques_raw) == 0:
-				ques = ''
-			else:
-				que_soup = BeautifulSoup(ques_raw[0], "lxml")
-				ques = ''.join(que_soup.find_all(text=True))
-			# example descripton
-			example_raw = re.findall('<div class="m-t-lg m-b-lg">(.*?)</div>', que_html, re.S)
-			if len(example_raw) == 0:
-				example = ''
-			else:
-				example_soup = BeautifulSoup(example_raw[0], "lxml")
-				example = ''.join(example_soup.find_all(text=True))
+			ques = isEmpty_bf(ques_raw)
+			# other description
+			description_raw = re.findall('<div class="m-t-lg m-b-lg">(.*?)<b>Timer</b>', que_html, re.S)
+			description = isEmpty_bf(description_raw)
+			description = description.replace('\n\n', '').replace('Expand 2', '').replace('Expand ', '').replace('  ', '').replace('Related Problems', '\nRelated Problems').replace('Tags', '\nTags').replace('\n show company tags ', '')
 			# put them together
-			number_ques_example = 'problem_start' + '\n' + eachItem + '\n' + '\n' + ques + '\n' + '\n' + example + '\n' + '\n'
+			all_description = 'problem_start' + '\n' + eachItem + '\n\n' + diff + '\n' + ques + '\n\n' + description + '\n\n'
 			# answer page ----------
 			ans_html = get_html(ans_url)
 			ans_raw = re.findall('<pre class="prettyprint nicefont">(.*?)</pre>', ans_html, re.S)
@@ -92,7 +95,7 @@ def get_answer(problems, ans_url_base, que_url_base):
 			code = unescape(ans_raw[0], {"&apos;": "'", "&quot;": '"'})	# replace the xml character reference
 			code = code + '\n' + 'problem_end'
 			# Save code as file
-			save_answer_code(eachItem, number_ques_example + code[372:])
+			save_answer_code(eachItem, all_description + code[372:])
 			success_cnt = success_cnt + 1
 			tot_cnt = tot_cnt + 1
 			print tot_cnt, '\t [ OK ]\t\t', eachProblem
@@ -101,7 +104,6 @@ def get_answer(problems, ans_url_base, que_url_base):
 			tot_cnt = tot_cnt + 1
 			log_file.write(str(fail_cnt) + ':\t' + eachProblem + ' Failed.\n\tURL: ' + ans_url + '\n')
 			print tot_cnt, '\t [ Failed ]\t', eachProblem
-
 	print '>>> ', tot_cnt, ' Finished, ', success_cnt, ' succeeded, ', fail_cnt, ' failed.'
 	log_file.close()
 
