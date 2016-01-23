@@ -2,9 +2,6 @@
 import os
 import re
 
-def write_header(output):
-	output.write("\\documentclass{article}\n \\usepackage[top=0.5in, bottom=0.5in, left=0.5in, right=0.5in]{geometry}\n \\usepackage{xcolor}\n \\usepackage{listings}\n \\lstset{language=Java, escapeinside=``, breaklines=true, frame=none,extendedchars=false, keywordstyle=\\color{blue!70}\\bfseries, basicstyle=\\ttfamily\\small, commentstyle=\\ttfamily\\color{green!40!black}, showstringspaces=false} \\begin{document}\n\\tableofcontents\n")
-
 def generate():
 	if (os.path.exists(path)):
 		pass
