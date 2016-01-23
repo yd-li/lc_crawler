@@ -34,7 +34,7 @@ def generate():
 				try:
 					description_file = open(path + each_tag + '/' + each_file, 'r')
 					code_file = open(path + each_tag + '/' + problem_name + '_code.txt', 'r')
-					output.write('\n===============' + problem_name + '===============\n')
+					output.write('\n\n===============' + problem_name + '===============\n')
 					output.write(description_file.read())
 					output.write(code_file.read())
 					print '\t%s\t[OK]\t\t%s' % (tot_cnt, problem_name)
