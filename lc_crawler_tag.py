@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 import urllib2
 import re
 import os
@@ -31,7 +32,7 @@ def get_problem_by_tag(tag_url):
 	# get problems from each tag
 	problems = {}
 	rep = re.compile(' ')
-	tag_file = open(path + 'tags.txt', 'w')
+	tag_file = open('tags.txt', 'w')
 	for tag in tags:
 		url = tag_url + rep.sub("-", tag).lower()
 		try:
@@ -46,10 +47,10 @@ def get_problem_by_tag(tag_url):
 	tag_file.close()
 	return problems
 
-def save_file(each_tag, each_problem, number_ques_example, code):
-	file_name = path + each_tag + '/' + each_problem[1] + '.txt'
+def save_file(each_tag, each_problem, flag, data):
+	file_name = path + each_tag + '/' + each_problem[1] + flag + '.txt'
 	ans_file = open(file_name, 'w');
-	ans_file.write(number_ques_example + code)
+	ans_file.write(data)
 	ans_file.close()
 
 def isEmpty_bf(raw):
@@ -71,14 +72,16 @@ def get_prob_description(each_problem, que_html):
 	description = isEmpty_bf(description_raw)
 	description = description.replace('\n\n', '').replace('Expand 2', '').replace('Expand ', '').replace('  ', '').replace('Related Problems', '\nRelated Problems').replace('Tags', '\nTags').replace('\n show company tags ', '')
 	# put them together
-	all_description = 'problem_start' + '\n' + each_problem[1] + '\n\n' + diff + '\n' + ques + '\n\n' + description + '\n\n'
+	all_description = (each_problem[0] + each_problem[1] + '\n\n' + diff + '\n' + ques + '\n\n' + description).strip()
+	all_description = ('%s: %s\n\n%s\n%s\n\n%s' % (each_problem[0], each_problem[1], diff, ques, description)).strip()
+	# all_description = (diff + '\n' + ques + '\n' + description).strip()
 	return all_description
 
 def get_code(ans_html):
 	ans_raw = re.findall('<pre class="prettyprint nicefont">(.*?)</pre>', ans_html, re.S)
 	# add description
 	# use unescape to replace the xml character reference
-	code = unescape(ans_raw[0], {"&apos;": "'", "&quot;": '"'})	+ '\n' + 'problem_end'
+	code = unescape(ans_raw[0], {"&apos;": "'", "&quot;": '"'}).strip()
 	return code
 
 # get problem description and answer code
@@ -89,6 +92,7 @@ def get_answer(problems, ans_url_base, que_url_base):
 	success_cnt = 0
 	fail_cnt = 0
 	for each_tag in problems:
+	# for each_tag in ['Union Find', 'Yahoo']:
 		print 'Tag: %s' % each_tag
 		os.mkdir(path + each_tag)
 		for each_problem in problems[each_tag]:
@@ -103,6 +107,7 @@ def get_answer(problems, ans_url_base, que_url_base):
 				try:
 					que_html = get_html(que_url)
 					all_description = get_prob_description(each_problem, que_html)
+					save_file(each_tag, each_problem, '_description', all_description)
 				except urllib2.URLError as e:
 					raise e
 				# answer page ----------
@@ -110,10 +115,9 @@ def get_answer(problems, ans_url_base, que_url_base):
 					ans_html = get_html(ans_url)
 					code = get_code(ans_html)
 					# Save code as file
-					save_file(each_tag, each_problem, all_description, code[372:])
+					save_file(each_tag, each_problem, '_code', code[372:])
 				except urllib2.URLError as e:
 					# print "Can't open answer page of %s, error message: %s" % (each_problem[1], e)
-					save_file(each_tag, each_problem, all_description, '')
 					raise e
 				success_cnt = success_cnt + 1
 				tot_cnt = tot_cnt + 1
@@ -137,8 +141,8 @@ if __name__ == '__main__':
 
 	tag_url = 'http://www.lintcode.com/en/tag/'
 	problems = get_problem_by_tag(tag_url)
-	# problems = {'Subarray':[['402', 'Continuous Subarray Sum', 'Medium'], ['138', 'Subarray Sum', 'easy']],
-	#			'Greddy':[['412', 'Candy', 'Hard'], ['116', 'Jump Game', '']]}
+	#problems = {'Union Find':[['1', 'Graph Valid Tree', 'Medium'], ['2', 'Surrounded Regions', 'Medium']],
+	#			'Yahoo':[['3', 'Binary Tree Serialization', 'Medium']]}
 	answer_url = 'http://www.jiuzhang.com/solutions/'
 	question_url = 'http://www.lintcode.com/en/problem/'
 	get_answer(problems, answer_url, question_url)
